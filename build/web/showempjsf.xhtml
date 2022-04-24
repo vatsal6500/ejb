@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <f:view>
+            <a href="empjsf.xhtml">Add Emp</a>
+            <a href="searchjsf.xhtml">Search Emp</a>
+
+            <h:form>
+                <h1><h:outputText value="List"/></h1>
+                <h:dataTable value="#{empManagedBean.showEmp()}" var="item" border="2">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Eid"/>
+                        </f:facet>
+                        <h:outputText value="#{item.eid}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Employee Name:"/>
+                        </f:facet>
+                        <h:outputText value="#{item.ename}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Department Name:"/>
+                        </f:facet>
+                        <h:outputText value="#{item.did.dname}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            Opeartion
+                        </f:facet>
+                        <h:commandButton action="#{empManagedBean.editClickEmp(item.eid)}" value="Edit"></h:commandButton>
+                        <h:commandButton action="#{empManagedBean.deleteClickEmp(item.eid)}" value="Delete"></h:commandButton>
+                    </h:column>
+                </h:dataTable>
+            </h:form>
+        </f:view>
+
+    </h:body>
+</html>
+

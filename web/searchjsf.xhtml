@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <label>Emp Name: </label>
+            <h:inputText value="#{empManagedBean.ename}"></h:inputText>
+            <h:commandButton value="Searche" action="#{empManagedBean.getEmpName(empManagedBean.ename)}"></h:commandButton>
+
+            <h:dataTable value="#{empManagedBean.listByEname()}" var="item" border="2">
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Eid"/>
+                    </f:facet>
+                    <h:outputText value="#{item.eid}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Employee Name:"/>
+                    </f:facet>
+                    <h:outputText value="#{item.ename}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Department Name:"/>
+                    </f:facet>
+                    <h:outputText value="#{item.did.dname}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        Opeartion
+                    </f:facet>
+                    <h:commandButton action="#{empManagedBean.editClickEmp(item.eid)}" value="Edit"></h:commandButton>
+                    <h:commandButton action="#{empManagedBean.deleteClickEmp(item.eid)}" value="Delete"></h:commandButton>
+                </h:column>
+            </h:dataTable>
+            <br/><br/><br/><br/><br/>
+        </h:form>
+        <h:form>
+            <label>Dept Name: </label>
+            <h:selectOneMenu value="#{empManagedBean.dname}">
+                    <!-- TODO: update below reference to list of available items-->
+                    <f:selectItems value="#{empManagedBean.showDept()}" var="dept" itemValue="#{dept.dname}" itemLabel="#{dept.dname}"/>
+                </h:selectOneMenu>
+            <h:commandButton value="Searchd" action="#{empManagedBean.getDeptName(empManagedBean.dname)}"></h:commandButton>
+
+            <h:dataTable value="#{empManagedBean.listByDname()}" var="item" border="2">
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Eid"/>
+                    </f:facet>
+                    <h:outputText value="#{item.eid}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Employee Name:"/>
+                    </f:facet>
+                    <h:outputText value="#{item.ename}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Department Name:"/>
+                    </f:facet>
+                    <h:outputText value="#{item.did.dname}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        Opeartion
+                    </f:facet>
+                    <h:commandButton action="#{empManagedBean.editClickEmp(item.eid)}" value="Edit"></h:commandButton>
+                    <h:commandButton action="#{empManagedBean.deleteClickEmp(item.eid)}" value="Delete"></h:commandButton>
+                </h:column>
+            </h:dataTable>
+        </h:form>
+    </h:body>
+</html>
+
